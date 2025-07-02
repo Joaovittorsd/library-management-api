@@ -23,6 +23,31 @@ public class EmprestimosController : Controller
         return Ok(emprestimos);
     }
 
+    [HttpPost]
+    public async Task<ActionResult<int>> Solicitar([FromBody] CriarEmprestimoRequest request)
+    {
+        try
+        {
+            var id = await _service.SolicitarEmprestimo(request.LivroId);
+            return CreatedAtAction(nameof(ObterPorId), new { id }, id);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { mensagem = ex.Message });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno no servidor.");
+        }
+    }
+
+    [HttpPost("{id}/devolucao")]
+    public async Task<IActionResult> RegistrarDevolucao(int id)
+    {
+        await _service.RegistrarDevolucao(id);
+        return NoContent();
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Emprestimo>> ObterPorId(int id)
     {
@@ -31,19 +56,5 @@ public class EmprestimosController : Controller
             return NotFound();
 
         return Ok(emprestimo);
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<int>> Solicitar([FromBody] CriarEmprestimoRequest request)
-    {
-        var id = await _service.SolicitarEmprestimo(request.LivroId);
-        return CreatedAtAction(nameof(ObterPorId), new { id }, id);
-    }
-
-    [HttpPost("{id}/devolucao")]
-    public async Task<IActionResult> RegistrarDevolucao(int id)
-    {
-        await _service.RegistrarDevolucao(id);
-        return NoContent();
     }
 }
