@@ -12,7 +12,7 @@ Este projeto permite:
 
 ## 🚀 Tecnologias
 
--   .NET 5
+-   .NET 8
 -   Entity Framework Core
 -   SQL Server
 -   Moq e xUnit (Testes unitários)
@@ -21,14 +21,14 @@ Este projeto permite:
 
 ## ⚙️ Como executar o projeto
 
-### 1️⃣ Clone o repositório
+1️⃣ Clone o repositório
 
 ```bash
 git clone https://github.com/Joaovittorsd/library-management-api.git
 cd LibraryManagement.API
 ```
 
-### 2️⃣ Configure a string de conexão
+2️⃣ Configure a string de conexão
 
 No arquivo appsettings.json (ou appsettings.Development.json), ajuste a conexão com seu banco de dados SQL Server:
 
@@ -69,14 +69,14 @@ ou
 https://localhost:5106/Swagger/index.html
 ```
 
-🧪 Executar os testes
+## 🧪 Executar os testes
 
 Para rodar todos os testes unitários:
 ```bash
 dotnet test
 ```
 
-🛠️ Endpoints Disponíveis
+## 🛠️ Endpoints Disponíveis
 
 📘 Livros
 | Método | Rota             | Descrição              |
@@ -100,6 +100,24 @@ Exemplo payload criação de livro:
 | Método | Rota                                 | Descrição                   |
 | ------ | ------------------------------------ | --------------------------- |
 | GET    | /api/emprestimos                     | Listar todos os empréstimos |
-| GET    | /api/emprestimos/{id}                | Obter por Id do empréstimo  |
+| GET    | /api/emprestimos/{id}                | Obter empréstimo por Id     |
 | POST   | /api/emprestimos/solicitar           | Solicitar empréstimo        |
 | POST   | /api/emprestimos/devolucao/{livroId} | Registrar devolução         |
+
+
+## ✨ Observações
+
+* Este projeto segue os princípios de **Modelagem de Domínio Rico**, com separação entre:
+
+  * Domain
+  * Application
+  * Infrastructure
+  * API
+
+* Os testes cobrem regras de domínio e serviços de aplicação.
+
+
+## 👤 Autor
+João Vitor Lima da SILVA
+https://www.linkedin.com/in/joaovittor/
+vittor.prweb@outlook.com
