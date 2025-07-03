@@ -29,12 +29,6 @@ public class LivroRepository : ILivroRepository
         await _context.Livros.AddAsync(livro);
     }
 
-    public Task UpdateAsync(Livro livro)
-    {
-       _context.Livros.Update(livro);
-        return Task.CompletedTask;
-    }
-
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();

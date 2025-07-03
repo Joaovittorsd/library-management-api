@@ -22,7 +22,7 @@ public class Emprestimo
     public void RegistrarDevolucao()
     {
         if (Status == StatusEmprestimo.Devolvido)
-            throw new InvalidOperationException("O empréstimo já foi devolvido");
+            throw new InvalidOperationException("Este empréstimo já foi devolvido.");
 
         Status = StatusEmprestimo.Devolvido;
         DataDevolucao = DateTime.UtcNow;

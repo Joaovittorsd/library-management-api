@@ -20,13 +20,6 @@ public class EmprestimoRepository : IEmprestimoRepository
         return await _context.Emprestimos.FindAsync(id);
     }
 
-    public async Task<List<Emprestimo>> GetByLivroIdAsync(int livroId)
-    {
-        return await _context.Emprestimos
-           .Where(e => e.LivroId == livroId)
-           .ToListAsync();
-    }
-
     public async Task<Emprestimo> GetEmprestimoAtivoPorLivroIdAsync(int livroId)
     {
         return await _context.Emprestimos

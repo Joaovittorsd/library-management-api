@@ -38,14 +38,14 @@ public class LivrosController : Controller
     {
         try
         {
-            var id = await _service.CriarLivroAsync(
+            var livro = await _service.CriarLivroAsync(
                 request.Titulo,
                 request.Autor,
                 request.AnoPublicacao,
                 request.QuantidadeDisponivel
             );
 
-            return CreatedAtAction(nameof(ObterPorId), new { id }, id);
+            return CreatedAtAction(nameof(ObterPorId), new {id = livro.Id }, livro);
         }
         catch (ArgumentNullException ex)
         {

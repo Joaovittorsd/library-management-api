@@ -29,7 +29,7 @@ public class EmprestimoService
         var livro = await _livroRepository.GetByIdAsync(livroId);
 
         if (livro is null)
-            throw new Exception("Livro não encontrado.");
+            throw new InvalidOperationException("Livro não encontrado.");
 
         var emprestimo = new Emprestimo(livroId);
         livro.ReduzirQuantidade();
@@ -46,7 +46,7 @@ public class EmprestimoService
         var emprestimo = await _emprestimoRepository.GetEmprestimoAtivoPorLivroIdAsync(livroId);
 
         if (emprestimo is null)
-            throw new Exception("Não há empréstimo ativo para este livro.");
+            throw new InvalidOperationException("Não existe nenhum empréstimo pendente para este livro.");
 
         emprestimo.RegistrarDevolucao();
 

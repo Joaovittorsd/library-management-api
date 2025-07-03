@@ -23,13 +23,13 @@ public class EmprestimosController : Controller
         return Ok(emprestimos);
     }
 
-    [HttpPost]
+    [HttpPost("solicitar")]
     public async Task<ActionResult<Emprestimo>> Solicitar([FromBody] CriarEmprestimoRequest request)
     {
         try
         {
-            var id = await _service.SolicitarEmprestimo(request.LivroId);
-            return CreatedAtAction(nameof(ObterPorId), new { id }, id);
+            var emprestimo = await _service.SolicitarEmprestimo(request.LivroId);
+            return CreatedAtAction(nameof(ObterPorId), new { id = emprestimo.Id }, emprestimo);
         }
         catch (InvalidOperationException ex)
         {
@@ -41,17 +41,21 @@ public class EmprestimosController : Controller
         }
     }
 
-    [HttpPost("{id}/devolucao")]
-    public async Task<IActionResult> RegistrarDevolucao(int id)
+    [HttpPost("devolucao/{livroId}")]
+    public async Task<IActionResult> RegistrarDevolucao(int livroId)
     {
         try
         {
-            await _service.RegistrarDevolucao(id);
+            await _service.RegistrarDevolucao(livroId);
             return NoContent();
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
             return BadRequest(new { mensagem = ex.Message });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno no servidor.");
         }
     }
 
