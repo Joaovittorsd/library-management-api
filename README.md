@@ -25,7 +25,6 @@ Este projeto permite:
 
 ```bash
 git clone https://github.com/Joaovittorsd/library-management-api.git
-cd LibraryManagement.API
 ```
 
 2️⃣ Configure a string de conexão
@@ -40,39 +39,61 @@ No arquivo appsettings.json (ou appsettings.json), ajuste a conexão com seu ban
 }
 ```
 
-3️⃣ Restaure os pacotes
+4️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
 
-```bash
+* No Visual Studio, vá em:
+
+```arduino
+Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes
+```
+
+5️⃣ Selecione o projeto de inicialização correto (aquele que contém o DbContext):
+
+* No combobox Projeto Padrão do console, escolha o projeto Infrastructure.
+
+```powershell
 dotnet restore
 ```
 
-4️⃣ Execute as migrations
+6️⃣ Execute a migration:
 
-Crie o banco de dados e aplique as migrations:
-
-```bash
-dotnet ef database update
+```powershell
+Update-Database
 ```
 
-5️⃣ Rode a aplicação
+7️⃣ Executar o projeto
 
-```bash
-dotnet run
-```
+✅ No Visual Studio:
+
+Clique em Iniciar (F5) ou pressione Ctrl + F5.
+
+A aplicação vai iniciar a API e abrir o Swagger.
+
 A API estará disponível em:
 
 ```arduino
 https://localhost:7126/Swagger/index.html
 ```
-ou
-```arduino
-https://localhost:5106/Swagger/index.html
-```
 
 ## 🧪 Executar os testes
 
 Para rodar todos os testes unitários:
-```bash
+
+4️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
+
+* No Visual Studio, vá em:
+
+```arduino
+Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes
+```
+
+5️⃣ Selecione o projeto de inicialização correto (aquele que contém os Tests):
+
+* No combobox Projeto Padrão do console, escolha o projeto Tests.
+
+6️⃣ Execute o comando:
+
+```powershell
 dotnet test
 ```
 
