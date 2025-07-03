@@ -39,7 +39,7 @@ No arquivo appsettings.json (ou appsettings.json), ajuste a conexão com seu ban
 }
 ```
 
-4️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
+3️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
 
 * No Visual Studio, vá em:
 
@@ -47,7 +47,7 @@ No arquivo appsettings.json (ou appsettings.json), ajuste a conexão com seu ban
 Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes
 ```
 
-5️⃣ Selecione o projeto de inicialização correto (aquele que contém o DbContext):
+4️⃣ Selecione o projeto de inicialização correto (aquele que contém o DbContext):
 
 * No combobox Projeto Padrão do console, escolha o projeto Infrastructure.
 
@@ -55,13 +55,13 @@ Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes
 dotnet restore
 ```
 
-6️⃣ Execute a migration:
+5️⃣ Execute a migration:
 
 ```powershell
 Update-Database
 ```
 
-7️⃣ Executar o projeto
+6️⃣ Executar o projeto
 
 ✅ No Visual Studio:
 
@@ -79,7 +79,7 @@ https://localhost:7126/Swagger/index.html
 
 Para rodar todos os testes unitários:
 
-4️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
+1️⃣ Abra o Console do Gerenciador de Pacotes do NuGet:
 
 * No Visual Studio, vá em:
 
@@ -87,11 +87,11 @@ Para rodar todos os testes unitários:
 Ferramentas > Gerenciador de Pacotes NuGet > Console do Gerenciador de Pacotes
 ```
 
-5️⃣ Selecione o projeto de inicialização correto (aquele que contém os Tests):
+2️⃣ Selecione o projeto de inicialização correto (aquele que contém os Tests):
 
 * No combobox Projeto Padrão do console, escolha o projeto Tests.
 
-6️⃣ Execute o comando:
+3️⃣ Execute o comando:
 
 ```powershell
 dotnet test
