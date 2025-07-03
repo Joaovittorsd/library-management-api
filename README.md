@@ -30,7 +30,7 @@ cd LibraryManagement.API
 
 2️⃣ Configure a string de conexão
 
-No arquivo appsettings.json (ou appsettings.Development.json), ajuste a conexão com seu banco de dados SQL Server:
+No arquivo appsettings.json (ou appsettings.json), ajuste a conexão com seu banco de dados SQL Server:
 
 ```json
 {
@@ -118,6 +118,6 @@ Exemplo payload criação de livro:
 
 
 ## 👤 Autor
-João Vitor Lima da SILVA
-https://www.linkedin.com/in/joaovittor/
+João Vitor Lima da Silva<br>
+https://www.linkedin.com/in/joaovittor/<br>
 vittor.prweb@outlook.com
