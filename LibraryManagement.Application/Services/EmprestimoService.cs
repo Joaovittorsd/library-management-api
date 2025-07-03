@@ -41,16 +41,16 @@ public class EmprestimoService
        return emprestimo;
     }
 
-    public async Task RegistrarDevolucao(int emprestimoId)
+    public async Task RegistrarDevolucao(int livroId)
     {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
+        var emprestimo = await _emprestimoRepository.GetEmprestimoAtivoPorLivroIdAsync(livroId);
 
         if (emprestimo is null)
-            throw new Exception("Empréstimo não encontrado");
+            throw new Exception("Não há empréstimo ativo para este livro.");
 
         emprestimo.RegistrarDevolucao();
 
-        var livro = await _livroRepository.GetByIdAsync(emprestimo.LivroId);
+        var livro = await _livroRepository.GetByIdAsync(livroId);
         livro.AumentarQuantidade();
 
         await _livroRepository.SaveChangesAsync();
