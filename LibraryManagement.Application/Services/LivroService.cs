@@ -22,11 +22,11 @@ public class LivroService
         return await _livroRepository.GetByIdAsync(id);
     }
 
-    public async Task<int> CriarLivroAsync(string titulo, string autor, int ano, int quantidade)
+    public async Task<Livro> CriarLivroAsync(string titulo, string autor, int ano, int quantidade)
     {
         var livro = new Livro(titulo, autor, ano, quantidade);
         await _livroRepository.AddAsync(livro);
         await _livroRepository.SaveChangesAsync();
-        return livro.Id;
+        return livro;
     }
 }

@@ -34,15 +34,30 @@ public class LivrosController : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Criar([FromBody] CriarLivroRequest request)
+    public async Task<ActionResult<Livro>> Criar([FromBody] CriarLivroRequest request)
     {
-        var id = await _service.CriarLivroAsync(
-                request.Titulo, 
-                request.Autor, 
-                request.AnoPublicacao, 
+        try
+        {
+            var id = await _service.CriarLivroAsync(
+                request.Titulo,
+                request.Autor,
+                request.AnoPublicacao,
                 request.QuantidadeDisponivel
             );
 
-        return CreatedAtAction(nameof(ObterPorId), new { id }, id);
+            return CreatedAtAction(nameof(ObterPorId), new { id }, id);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(new { mensagem = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { mensagem = ex.Message });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Erro interno no servidor.");
+        }
     }
 }

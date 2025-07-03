@@ -24,7 +24,7 @@ public class EmprestimoService
         return await _emprestimoRepository.GetAllAsync();
     }
 
-    public async Task<int> SolicitarEmprestimo(int livroId)
+    public async Task<Emprestimo> SolicitarEmprestimo(int livroId)
     {
         var livro = await _livroRepository.GetByIdAsync(livroId);
 
@@ -38,7 +38,7 @@ public class EmprestimoService
         await _livroRepository.SaveChangesAsync();
         await _emprestimoRepository.SaveChangesAsync();
 
-       return emprestimo.Id;
+       return emprestimo;
     }
 
     public async Task RegistrarDevolucao(int emprestimoId)

@@ -24,7 +24,7 @@ public class EmprestimosController : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Solicitar([FromBody] CriarEmprestimoRequest request)
+    public async Task<ActionResult<Emprestimo>> Solicitar([FromBody] CriarEmprestimoRequest request)
     {
         try
         {
@@ -44,8 +44,15 @@ public class EmprestimosController : Controller
     [HttpPost("{id}/devolucao")]
     public async Task<IActionResult> RegistrarDevolucao(int id)
     {
-        await _service.RegistrarDevolucao(id);
-        return NoContent();
+        try
+        {
+            await _service.RegistrarDevolucao(id);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { mensagem = ex.Message });
+        }
     }
 
     [HttpGet("{id}")]
